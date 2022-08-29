@@ -5,23 +5,26 @@ namespace M120Projekt
 {
     static class APIDemo
     {
-        #region KlasseA
+        #region buch
         // Create
         public static void DemoACreate()
         {
             Debug.Print("--- DemoACreate ---");
-            // KlasseA
-            Data.KlasseA klasseA1 = new Data.KlasseA();
-            klasseA1.TextAttribut = "Artikel 1";
-            klasseA1.DatumAttribut = DateTime.Today;
-            Int64 klasseA1Id = klasseA1.Erstellen();
-            Debug.Print("Artikel erstellt mit Id:" + klasseA1Id);
+            // buch
+            Data.Buch buch1 = new Data.Buch();
+            buch1.Titel = "Totenherz";
+            buch1.AnzahlSeiten = 360;
+            buch1.Neu = true;
+            buch1.Veröffentlichung = DateTime.Today;
+            buch1.CoverTyp = Data.Buch.CoverTypes.Kartoniert;
+            Int64 buch1Id = buch1.Erstellen();
+            Debug.Print("Artikel erstellt mit Id:" + buch1Id);
         }
         public static void DemoACreateKurz()
         {
-            Data.KlasseA klasseA2 = new Data.KlasseA { TextAttribut = "Artikel 2", BooleanAttribut = true, DatumAttribut = DateTime.Today };
-            Int64 klasseA2Id = klasseA2.Erstellen();
-            Debug.Print("Artikel erstellt mit Id:" + klasseA2Id);
+            Data.Buch buch2 = new Data.Buch { Titel = "The Grimm Reaper", AnzahlSeiten = 520, Neu = true, Veröffentlichung = DateTime.Today, CoverTyp = Data.Buch.CoverTypes.Gebunden };
+            Int64 buch2Id = buch2.Erstellen();
+            Debug.Print("Artikel erstellt mit Id:" + buch2Id);
         }
 
         // Read
@@ -29,26 +32,26 @@ namespace M120Projekt
         {
             Debug.Print("--- DemoARead ---");
             // Demo liest alle
-            foreach (Data.KlasseA klasseA in Data.KlasseA.LesenAlle())
+            foreach (Data.Buch buch in Data.Buch.LesenAlle())
             {
-                Debug.Print("Artikel Id:" + klasseA.KlasseAId + " Name:" + klasseA.TextAttribut);
+                Debug.Print("Buch Id:" + buch.BuchId + " Name:" + buch.Titel);
             }
         }
         // Update
         public static void DemoAUpdate()
         {
             Debug.Print("--- DemoAUpdate ---");
-            // KlasseA ändert Attribute
-            Data.KlasseA klasseA1 = Data.KlasseA.LesenID(1);
-            klasseA1.TextAttribut = "Artikel 1 nach Update";
-            klasseA1.Aktualisieren();
+            // buch ändert Attribute
+            Data.Buch buch1 = Data.Buch.LesenID(1);
+            buch1.Titel = "Buch 1 nach Update";
+            buch1.Aktualisieren();
         }
         // Delete
         public static void DemoADelete()
         {
             Debug.Print("--- DemoADelete ---");
-            Data.KlasseA.LesenID(2).Loeschen();
-            Debug.Print("Artikel mit Id 2 gelöscht");
+            Data.Buch.LesenID(2).Loeschen();
+            Debug.Print("Buch mit Id 2 gelöscht");
         }
         #endregion
     }
